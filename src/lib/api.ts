@@ -1,6 +1,14 @@
 import { FALLBACK_DATA } from './fallbacks';
 
-const API_URL = process.env.NEXT_PUBLIC_BACKOFFICE_API_URL || 'http://localhost:4000/api';
+const getBaseFetchUrl = () => {
+  const url = process.env.NEXT_PUBLIC_BACKOFFICE_API_URL || 'http://localhost:4000/api';
+  if (!url.startsWith('http')) {
+    return `https://${url}`;
+  }
+  return url;
+};
+
+const API_URL = getBaseFetchUrl();
 
 let isBackendOffline = false;
 
