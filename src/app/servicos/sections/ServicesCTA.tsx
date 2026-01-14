@@ -2,9 +2,12 @@ import Link from "next/link";
 import { getPageContent } from "@/lib/api";
 
 export default async function ServicesCTA() {
-  const content = await getPageContent('services_cta');
-
-  if (!content) return null;
+  const content = await getPageContent('services_cta') || {
+      title: 'Pronto para materializar sua ideia?',
+      description: 'Seja para um projeto completo ou uma consultoria BIM, estou pronto para ajudar a elevar o nível do seu projeto.',
+      buttonText: 'Solicitar Orçamento',
+      buttonLink: '/contato'
+  };
 
   return (
     <section className="section text-center py-40 border-b border-border px-6 md:px-12">

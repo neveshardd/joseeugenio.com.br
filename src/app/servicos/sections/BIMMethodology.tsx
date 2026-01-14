@@ -1,10 +1,19 @@
 import { getBIMFeatures, getPageContent } from "@/lib/api";
 
 export default async function BIMMethodology() {
-  const intro = await getPageContent('bim_intro');
-  const features = await getBIMFeatures();
-
-  if (!intro || !features) return null;
+  const intro = await getPageContent('bim_intro') || {
+      section_label: 'Diferencial Técnico',
+      title: 'A Metodologia BIM como Pilar',
+      description: 'Minha abordagem não é apenas visual. Cada parede, viga e esquadria contém dados técnicos que garantem a viabilidade do projeto.'
+  };
+  let features = await getBIMFeatures();
+  
+  if (!features || features.length === 0) {
+    features = [
+      { id: 1, title: 'Coordenação', description: 'Redução drástica de erros e incompatibilidades em obra.' },
+      { id: 2, title: 'Precisão', description: 'Extração automática de quantitativos e orçamentos assertivos.' }
+    ];
+  }
 
   return (
     <section className="section border-b border-border py-24 px-6 md:px-12">

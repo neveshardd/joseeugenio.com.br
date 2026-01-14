@@ -1,9 +1,13 @@
 import { getFAQ } from "@/lib/api";
 
 export default async function FAQSection() {
-  const faqs = await getFAQ();
+  let faqs = await getFAQ();
 
-  if (!faqs) return null;
+  if (!faqs || faqs.length === 0) {
+    faqs = [
+      { id: 1, question: 'Quais softwares são utilizados?', answer: 'Trabalhamos prioritariamente com Revit (BIM), Enscape e Adobe Suite.' }
+    ];
+  }
 
   return (
     <section className="section bg-secondary/30 border-b border-border py-24 px-6 md:px-12">

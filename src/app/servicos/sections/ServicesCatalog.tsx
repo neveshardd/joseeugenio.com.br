@@ -3,9 +3,14 @@ import { cn } from "@/lib/utils";
 import { getServices } from "@/lib/api";
 
 export default async function ServicesCatalog() {
-  const servicesData = await getServices();
+  let servicesData = await getServices();
   
-  if (!servicesData) return null;
+  if (!servicesData || servicesData.length === 0) {
+    servicesData = [
+      { id: 1, title: 'Projeto Arquitetônico', description: 'Desenvolvimento completo, do estudo preliminar ao projeto executivo.', tags: 'Arquitetura / BIM', icon: 'FaDrawPolygon' },
+      { id: 2, title: 'Modelagem BIM', description: 'Criação de modelos inteligentes para coordenação e extração de quantitativos.', tags: 'BIM / Tecnologia', icon: 'FaCube' }
+    ];
+  }
 
   return (
     <section className="section border-b border-border py-24 px-6 md:px-12">

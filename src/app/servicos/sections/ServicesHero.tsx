@@ -2,9 +2,12 @@ import { cn } from "@/lib/utils";
 import { getPageContent } from "@/lib/api";
 
 export default async function ServicesHero() {
-  const content = await getPageContent('services_hero');
-
-  if (!content) return null; // Or skeleton/fallback
+  const content = await getPageContent('services_hero') || {
+      title: 'Soluções em<br/>Arquitetura Digital',
+      description: 'Trabalho na intersecção entre o design atemporal e a tecnologia de ponta, entregando projetos precisos e visualmente impactantes.',
+      buttonText: 'Solicitar Proposta',
+      buttonLink: '/contato'
+  };
 
   return (
     <section className="section bg-secondary/30 border-b border-border py-24 px-6 md:px-12">

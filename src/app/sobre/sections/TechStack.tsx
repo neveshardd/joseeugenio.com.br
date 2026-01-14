@@ -1,11 +1,18 @@
 import * as SiIcons from "react-icons/si";
 import * as FaIcons from "react-icons/fa";
 import { getTechStack } from "@/lib/api";
+import { getImageUrl } from "@/lib/image-url";
+import Image from "next/image";
 
 export default async function TechStack() {
-  const techStackData = await getTechStack();
+  let techStackData = await getTechStack();
 
-  if (!techStackData) return null;
+  if (!techStackData || techStackData.length === 0) {
+    techStackData = [
+      { id: 1, category: 'bim', categoryNumber: '01', categoryTitle: 'BIM &<br/>Modelagem', categoryQuote: 'O BIM é o alicerce digital.', toolName: 'Revit', toolIcon: 'SiAutodeskrevit', toolDescription: 'Coordenação' },
+      { id: 2, category: 'render', categoryNumber: '02', categoryTitle: 'Visualização<br/>Real-time', categoryQuote: 'A luz molda o espaço.', toolName: 'Enscape', toolIcon: 'EnscapeIcon', toolDescription: 'Renderização' }
+    ];
+  }
 
   // Group by category
   const categories = techStackData.reduce((acc: any, item: any) => {
@@ -58,17 +65,35 @@ export default async function TechStack() {
                 />
                 <ul className="flex flex-col gap-6">
                   {category.tools.map((tool: any, toolIdx: number) => {
-                    // Dynamic icon mapping
+                    const isImageUrl = tool.icon && (tool.icon.startsWith('/') || tool.icon.startsWith('http'));
+                    
+                    // Dynamic icon mapping fallback
                     let IconComponent;
-                    if (tool.icon === 'EnscapeIcon') {
-                      IconComponent = () => <div className="w-6 text-center font-bold">En</div>;
-                    } else {
-                      IconComponent = (SiIcons as any)[tool.icon] || (FaIcons as any)[tool.icon] || FaIcons.FaCube;
+                    if (!isImageUrl) {
+                        if (tool.icon === 'EnscapeIcon') {
+                          IconComponent = () => <div className="w-6 text-center font-bold">En</div>;
+                        } else {
+                          IconComponent = (SiIcons as any)[tool.icon] || (FaIcons as any)[tool.icon] || FaIcons.FaCube;
+                        }
                     }
 
                     return (
                       <li key={toolIdx} className="flex items-center gap-5">
-                        <IconComponent size={24} />
+                        <div className="w-8 h-8 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                            {isImageUrl ? (
+                                <div className="relative w-full h-full">
+                                    <Image 
+                                        src={getImageUrl(tool.icon)} 
+                                        alt={tool.name}
+                                        fill
+                                        className="object-contain"
+                                        unoptimized
+                                    />
+                                </div>
+                            ) : (
+                                <IconComponent size={24} />
+                            )}
+                        </div>
                         <div>
                           <span className="text-sm font-bold uppercase tracking-widest block">{tool.name}</span>
                           <span className="text-[0.65rem] uppercase tracking-[0.15em] text-muted-foreground">{tool.description}</span>

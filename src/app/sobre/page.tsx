@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function About() {
   return (
-    <main>
+    <main className="pt-24 md:pt-32">
       <AboutHero />
       <AboutManifesto />
       <TechStack />

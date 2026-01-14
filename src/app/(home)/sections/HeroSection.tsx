@@ -10,7 +10,7 @@ interface HeroSectionProps {
   imageSrc: string;
 }
 
-export default function HeroSection({ title, subtitle, ctaText, ctaLink, imageSrc }: HeroSectionProps) {
+export default function HeroSection({ title, subtitle, ctaText, ctaLink = "/", imageSrc }: HeroSectionProps) {
   return (
     <section className="relative w-full h-screen overflow-hidden">
       
@@ -23,6 +23,7 @@ export default function HeroSection({ title, subtitle, ctaText, ctaLink, imageSr
             className="object-cover transition-transform duration-[20s] ease-linear scale-100 peer-hover:scale-105"
             priority
             sizes="100vw"
+            unoptimized={process.env.NODE_ENV === 'development'}
          />
          {/* Gradient Overlay for text readability - Darkened */}
          <div className="absolute inset-0 bg-black/40" />

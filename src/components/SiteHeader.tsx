@@ -13,13 +13,8 @@ export default function SiteHeader() {
   const isHomePage = pathname === "/";
 
   useEffect(() => {
-    if (!isHomePage) {
-      setIsScrolled(true);
-      return;
-    }
-
     const handleScroll = () => {
-      const threshold = window.innerHeight * 0.9;
+      const threshold = isHomePage ? window.innerHeight * 0.9 : 20;
       setIsScrolled(window.scrollY > threshold);
     };
 
@@ -31,20 +26,21 @@ export default function SiteHeader() {
   return (
     <header 
       className={cn(
-        "site-header flex justify-between items-center w-full z-50 transition-all duration-300 px-6 md:px-12",
-        isHomePage 
-          ? `fixed top-0 ${isScrolled ? "bg-white/95 backdrop-blur-md border-b border-border shadow-sm py-4" : "bg-black/10 backdrop-blur-md border-none py-8"}`
-          : "relative bg-white border-b border-border py-6"
+        "site-header fixed top-0 left-0 right-0 flex justify-between items-center w-full z-50 transition-all duration-300 px-6 md:px-12",
+        isScrolled 
+          ? "bg-white/95 backdrop-blur-md border-b border-border shadow-sm py-1" 
+          : isHomePage ? "bg-black/10 backdrop-blur-md border-none py-3" : "bg-white/50 backdrop-blur-md py-3"
       )}
     >
       <Link 
         href="/" 
-        className={cn(
-          "brand text-xl font-semibold uppercase tracking-tighter no-underline transition-colors duration-300",
-          (isHomePage && !isScrolled) ? "text-white" : "text-foreground"
-        )}
+        className="brand transition-opacity duration-300 hover:opacity-80"
       >
-        José Eugênio
+        <img 
+          src={(isHomePage && !isScrolled) ? "/logo-white.png" : "/Artboard 1.png"} 
+          alt="José Eugênio" 
+          className="h-16 w-auto object-contain"
+        />
       </Link>
       <Navigation isScrolled={!isHomePage || isScrolled} />
       <MobileMenu isScrolled={!isHomePage || isScrolled} />

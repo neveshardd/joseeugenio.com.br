@@ -1,9 +1,13 @@
 import { getEducation } from "@/lib/api";
 
 export default async function Education() {
-  const education = await getEducation();
+  let education = await getEducation();
 
-  if (!education) return null;
+  if (!education || education.length === 0) {
+    education = [
+      { id: 1, period: '2020 — 2025', title: 'Arquitetura e Urbanismo', institution: 'Universidade', description: 'Graduação em andamento.' }
+    ];
+  }
 
   return (
     <section className="section bg-secondary/30 border-b border-border py-24 px-6 md:px-12">

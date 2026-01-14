@@ -15,13 +15,18 @@ const API_URL = process.env.NEXT_PUBLIC_BACKOFFICE_API_URL || "http://localhost:
 export default function ProjectsPreviewContainer() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const { data: projects, isLoading, error } = useQuery<Project[]>({
+  const { data: projects, isLoading } = useQuery<Project[]>({
     queryKey: ["home-projects"],
     queryFn: async () => {
-      const { data } = await axios.get(`${API_URL}/projects`);
-      // Return only top 3 projects for preview
-      return data.slice(0, 3);
+      try {
+        const { data } = await axios.get(`${API_URL}/projects`);
+        return data.slice(0, 3);
+      } catch (err) {
+        console.error("Error fetching projects for home:", err);
+        return [];
+      }
     },
+    retry: 1,
   });
 
   const handleOpen = (project: Project) => {
@@ -35,33 +40,14 @@ export default function ProjectsPreviewContainer() {
   if (isLoading) {
     return (
       <section className="section border-b border-border py-24 px-6 md:px-12 flex justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+        <Loader2 className="h-8 w-8 animate-spin text-muted-foreground/20" />
       </section>
-    );
-  }
-
-  if (error) {
-    return (
-        <ProjectsPreviewSection 
-            label="Destaques" 
-            projects={[
-                {
-                    href: "/projetos",
-                    imageAlt: "Ver todos os projetos",
-                    title: "Portfólio Completo",
-                    meta: "2023 — 2026",
-                    isPlaceholder: true,
-                    placeholderTitle: "Explorar Acervo",
-                    placeholderSubtitle: "Ver todos os projetos"
-                }
-            ]} 
-        />
     );
   }
 
   // Transform Project to ProjectCardProps
   const displayProjects: ProjectCardProps[] = (projects || []).map((p) => ({
-    href: undefined, // No href, we use onClick
+    href: undefined,
     imageSrc: getImageUrl(p.imageSrc),
     imageAlt: p.imageAlt || p.title,
     title: p.title,
@@ -83,7 +69,7 @@ export default function ProjectsPreviewContainer() {
   return (
     <>
       <ProjectsPreviewSection
-        label="Destaques Acadêmicos"
+        label="Destaques"
         projects={displayProjects}
       />
       <ProjectModal 

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function Services() {
   return (
-    <main>
+    <main className="pt-24 md:pt-32">
       <ServicesHero />
       <ServicesCatalog />
       <WorkProcess />

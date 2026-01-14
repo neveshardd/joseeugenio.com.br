@@ -1,9 +1,13 @@
 import { getExperience } from "@/lib/api";
 
 export default async function Experience() {
-  const experiences = await getExperience();
+  let experiences = await getExperience();
 
-  if (!experiences) return null;
+  if (!experiences || experiences.length === 0) {
+    experiences = [
+      { id: 1, period: '2022 — Presente', title: 'Estudante de Arquitetura', company: 'Universidade', description: 'Desenvolvimento de projetos acadêmicos com foco em técnica e estética.' }
+    ];
+  }
 
   return (
     <section className="section border-b border-border py-24 px-6 md:px-12">

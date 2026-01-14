@@ -1,9 +1,14 @@
 import { getWorkProcess } from "@/lib/api";
 
 export default async function WorkProcess() {
-  const steps = await getWorkProcess();
+  let steps = await getWorkProcess();
 
-  if (!steps) return null;
+  if (!steps || steps.length === 0) {
+    steps = [
+      { id: 1, num: '01', title: 'Brainstorming', description: 'Alinhamento de expectativas e necessidades do projeto.' },
+      { id: 2, num: '02', title: 'Estudo', description: 'Desenvolvimento das primeiras ideias e volumetrias.' }
+    ];
+  }
 
   return (
     <section className="section border-b border-border py-24 px-6 md:px-12">
