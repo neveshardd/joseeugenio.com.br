@@ -2,18 +2,41 @@ import { FALLBACK_DATA } from './fallbacks';
 
 const API_URL = process.env.NEXT_PUBLIC_BACKOFFICE_API_URL || 'http://localhost:4000/api';
 
+let isBackendOffline = false;
+
 export async function fetchFromAPI(endpoint: string, fallbackKey?: string) {
+  // If we already know the backend is unreachable, don't even try
+  if (isBackendOffline) {
+    if (fallbackKey && FALLBACK_DATA[fallbackKey]) return FALLBACK_DATA[fallbackKey];
+    return null;
+  }
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 2000); // 2 second timeout for faster failure
+
   try {
     const res = await fetch(`${API_URL}${endpoint}`, { 
-        next: { revalidate: 60 } // Cache for 60 seconds
+        next: { revalidate: 60 },
+        signal: controller.signal
     });
     
+    clearTimeout(timeoutId);
+
     if (!res.ok) {
       throw new Error(`Failed to fetch ${endpoint}: ${res.statusText}`);
     }
     
     return await res.json();
   } catch (error: any) {
+    clearTimeout(timeoutId);
+    
+    // If it's a connection error or timeout, mark backend as offline for the rest of this process
+    const isConnError = error.name === 'AbortError' || error.message?.includes('fetch failed') || error?.cause?.code === 'ECONNREFUSED';
+    
+    if (isConnError) {
+        isBackendOffline = true;
+    }
+
     // Return fallback data if available
     if (fallbackKey && FALLBACK_DATA[fallbackKey]) {
         return FALLBACK_DATA[fallbackKey];
