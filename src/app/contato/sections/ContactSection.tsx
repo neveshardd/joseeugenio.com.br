@@ -1,5 +1,3 @@
-import Link from "next/link";
-import { cn } from "@/lib/utils";
 import { getPageContent } from "@/lib/api";
 
 export default async function ContactSection() {

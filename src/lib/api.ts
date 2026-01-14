@@ -1,6 +1,8 @@
+import { FALLBACK_DATA } from './fallbacks';
+
 const API_URL = process.env.NEXT_PUBLIC_BACKOFFICE_API_URL || 'http://localhost:4000/api';
 
-export async function fetchFromAPI(endpoint: string) {
+export async function fetchFromAPI(endpoint: string, fallbackKey?: string) {
   try {
     const res = await fetch(`${API_URL}${endpoint}`, { 
         next: { revalidate: 60 } // Cache for 60 seconds
@@ -10,43 +12,56 @@ export async function fetchFromAPI(endpoint: string) {
       throw new Error(`Failed to fetch ${endpoint}: ${res.statusText}`);
     }
     
-    return res.json();
-  } catch (error) {
-    console.error(`Error fetching from API (${endpoint}):`, error);
-    return null; // Return null on error to handle gracefully in UI
+    return await res.json();
+  } catch (error: any) {
+    // Return fallback data if available
+    if (fallbackKey && FALLBACK_DATA[fallbackKey]) {
+        return FALLBACK_DATA[fallbackKey];
+    }
+    
+    return null;
   }
 }
 
 export async function getServices() {
-    return fetchFromAPI('/services');
+    return fetchFromAPI('/services', 'services') || [];
 }
 
 export async function getWorkProcess() {
-    return fetchFromAPI('/work-process');
+    return fetchFromAPI('/work-process', 'work-process') || [];
 }
 
 export async function getFAQ() {
-    return fetchFromAPI('/faq');
+    return fetchFromAPI('/faq', 'faq') || [];
 }
 
 export async function getBIMFeatures() {
-    return fetchFromAPI('/bim-features');
+    return fetchFromAPI('/bim-features', 'bim-features') || [];
 }
 
 export async function getPageContent(key: string) {
     const res = await fetchFromAPI(`/page-content?key=${key}`);
-    return res?.content || null;
+    
+    if (res?.content) return res.content;
+    
+    // Check specific fallback for page-content keys
+    if (FALLBACK_DATA['page-content']?.[key]) {
+        return FALLBACK_DATA['page-content'][key];
+    }
+    
+    return null;
 }
 
 export async function getTechStack() {
-    return fetchFromAPI('/tech-stack');
+    return fetchFromAPI('/tech-stack', 'tech-stack') || [];
 }
 
 export async function getExperience() {
-    return fetchFromAPI('/experience');
+    return fetchFromAPI('/experience', 'experience') || [];
 }
 
 export async function getEducation() {
-    return fetchFromAPI('/education');
+    return fetchFromAPI('/education', 'education') || [];
 }
+
 
