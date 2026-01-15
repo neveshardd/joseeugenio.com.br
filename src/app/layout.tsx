@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import QueryProvider from "@/components/QueryProvider";
 import PageAnimate from "@/components/PageAnimate";
 import SiteHeader from "@/components/SiteHeader";
+import SiteFooter from "@/components/SiteFooter";
 import { defaultMetadata, viewport } from "@/lib/metadata";
 
 const workSans = Work_Sans({
@@ -41,16 +42,7 @@ export default function RootLayout({
                 {children}
               </div>
 
-              <footer className="site-footer flex flex-col gap-8 bg-neutral-50 border-t border-border py-16 px-12 md:flex-row md:justify-between md:items-end">
-                <div className="text-sm text-muted-foreground">© 2026 José Eugênio — Estudante de Arquitetura</div>
-                <div className="flex gap-8">
-                  {["Instagram", "LinkedIn", "Behance"].map((social) => (
-                    <a key={social} href="#" className="link-simple text-sm font-medium text-foreground no-underline hover:underline hover:underline-offset-4">
-                      {social}
-                    </a>
-                  ))}
-                </div>
-              </footer>
+              <SiteFooter />
             </div>
           </PageAnimate>
         </QueryProvider>

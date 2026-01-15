@@ -8,9 +8,17 @@ interface HeroSectionProps {
   ctaText: string;
   ctaLink: string;
   imageSrc: string;
+  imageAlt?: string;
 }
 
-export default function HeroSection({ title, subtitle, ctaText, ctaLink = "/", imageSrc }: HeroSectionProps) {
+export default function HeroSection({ 
+  title, 
+  subtitle, 
+  ctaText, 
+  ctaLink = "/", 
+  imageSrc,
+  imageAlt = "Arquitetura Minimalista"
+}: HeroSectionProps) {
   return (
     <section className="relative w-full h-screen overflow-hidden">
       
@@ -18,7 +26,7 @@ export default function HeroSection({ title, subtitle, ctaText, ctaLink = "/", i
       <div className="absolute inset-0 w-full h-full">
          <Image
             src={imageSrc}
-            alt="Arquitetura Minimalista"
+            alt={imageAlt}
             fill
             className="object-cover transition-transform duration-[20s] ease-linear scale-100 peer-hover:scale-105"
             priority

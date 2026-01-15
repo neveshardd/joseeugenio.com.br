@@ -19,23 +19,16 @@ export default function HeroContainer() {
     );
   }
 
-  const defaultData = {
-    title: "Arquitetura<br />do Silêncio",
-    subtitle: "Moldando o vazio. Esculpindo a luz.",
-    ctaText: "Ver Portfólio Completo",
-    ctaLink: "/projetos",
-    imageSrc: "/hero.jpg"
-  };
-
-  const data = { ...defaultData, ...content };
+  if (!content) return null;
 
   return (
     <HeroSection
-      title={data.title}
-      subtitle={data.subtitle}
-      ctaText={data.ctaText}
-      ctaLink={data.ctaLink}
-      imageSrc={data.imageSrc}
+      title={content.title}
+      subtitle={content.subtitle}
+      ctaText={content.ctaText}
+      ctaLink={content.ctaLink}
+      imageSrc={content.imageSrc}
+      imageAlt={content.imageAlt}
     />
   );
 }

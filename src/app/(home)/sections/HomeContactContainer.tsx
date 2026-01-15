@@ -19,27 +19,17 @@ export default function HomeContactContainer() {
     );
   }
 
-  const defaultData = {
-    label: "Disponibilidade",
-    title: "Vamos criar<br />algo único?",
-    description: "Estou disponível para colaborações, estágios e projetos freelance de visualização arquitetônica.",
-    primaryCtaText: "Iniciar Conversa",
-    primaryCtaLink: "/contato",
-    secondaryCtaText: "Enviar E-mail",
-    secondaryCtaLink: "mailto:contact@joseeugenio.com.br"
-  };
-
-  const data = { ...defaultData, ...content };
+  if (!content) return null;
 
   return (
     <HomeContactSection
-      label={data.label}
-      title={data.title}
-      description={data.description}
-      primaryCtaText={data.primaryCtaText}
-      primaryCtaLink={data.primaryCtaLink}
-      secondaryCtaText={data.secondaryCtaText}
-      secondaryCtaLink={data.secondaryCtaLink}
+      label={content.label}
+      title={content.title}
+      description={content.description}
+      primaryCtaText={content.primaryCtaText}
+      primaryCtaLink={content.primaryCtaLink}
+      secondaryCtaText={content.secondaryCtaText}
+      secondaryCtaLink={content.secondaryCtaLink}
     />
   );
 }

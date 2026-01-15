@@ -25,30 +25,6 @@ export const FALLBACK_DATA: Record<string, any> = {
     { id: 1, period: '2020 — 2025', title: 'Arquitetura e Urbanismo', institution: 'Universidade', description: 'Graduação em andamento.' }
   ],
   'page-content': {
-    home_hero: {
-      title: 'Arquitetura<br />do Silêncio',
-      subtitle: 'Moldando o vazio. Esculpindo a luz.',
-      ctaText: 'Ver Portfólio Completo',
-      ctaLink: '/projetos',
-      imageSrc: '/hero.jpg'
-    },
-    home_about_preview: {
-      label: 'O Perfil',
-      heading: 'A atemporalidade<br/>é minha busca<br/>constante.',
-      paragraph1: 'Acredito que a arquitetura é a arte de emoldurar o vazio. Em um mundo saturado de ruído visual, busco o silêncio.',
-      paragraph2: 'Como estudante de arquitetura, cada projeto é um exercício de diálogo entre a estrutura e o ambiente.',
-      ctaText: 'Conheça Minha Trajetória',
-      ctaLink: '/sobre'
-    },
-    home_contact: {
-      label: 'Disponibilidade',
-      title: 'Vamos criar<br />algo único?',
-      description: 'Estou disponível para colaborações, estágios e projetos freelance de visualização arquitetônica.',
-      primaryCtaText: 'Iniciar Conversa',
-      primaryCtaLink: '/contato',
-      secondaryCtaText: 'Enviar E-mail',
-      secondaryCtaLink: 'mailto:contact@joseeugenio.com.br'
-    },
     about_hero: {
       name: 'José Eugênio',
       subtitle: 'Estudante de Arquitetura & BIM Specialist',

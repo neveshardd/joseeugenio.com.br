@@ -19,25 +19,15 @@ export default function AboutPreviewContainer() {
     );
   }
 
-  // Fallback data if API fails or content is empty
-  const defaultData = {
-    label: "O Perfil",
-    heading: "Atemporalidade<br/>é minha busca<br/>constante.",
-    paragraph1: "Acredito que a arquitetura é a arte de emoldurar o vazio. Em um mundo saturado de ruído visual, busco o silêncio. Meu trabalho acadêmico é definido pela pesquisa da honestidade dos materiais — concreto aparente, aço bruto e vidro límpido.",
-    paragraph2: "Como estudante de arquitetura, cada projeto é um exercício de diálogo entre a estrutura e o ambiente. Não projeto no terreno; projeto <em>com</em> o terreno.",
-    ctaText: "Conheça Minha Trajetória",
-    ctaLink: "/sobre"
-  };
-
-  const data = { ...defaultData, ...content };
+  if (!content) return null;
 
   return (
     <AboutPreviewSection
-      label={data.label}
-      heading={data.heading}
-      paragraphs={[data.paragraph1, data.paragraph2].filter(Boolean)}
-      ctaText={data.ctaText}
-      ctaLink={data.ctaLink}
+      label={content.label}
+      heading={content.heading}
+      paragraphs={[content.paragraph1, content.paragraph2].filter(Boolean)}
+      ctaText={content.ctaText}
+      ctaLink={content.ctaLink}
     />
   );
 }

@@ -79,7 +79,6 @@ export default function AboutPreviewSection({
 
       {/* Footer decoration */}
       <div className="absolute bottom-12 left-12 hidden lg:flex items-center gap-8">
-        <span className="text-[8px] font-bold tracking-[0.6em] uppercase text-black/20">EST. 2026</span>
         <div className="w-32 h-px bg-black/5" />
       </div>
     </section>
