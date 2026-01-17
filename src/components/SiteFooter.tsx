@@ -14,9 +14,9 @@ export default function SiteFooter() {
   const role = contactInfo?.role || "Estudante de Arquitetura";
 
   const socials = [
-    { name: "Instagram", href: contactInfo?.instagram || "#" },
-    { name: "LinkedIn", href: contactInfo?.linkedin || "#" },
-    { name: "Behance", href: contactInfo?.behance || "#" },
+    { name: "Instagram", href: "https://instagram.com/soujoseeugenio" },
+    // { name: "LinkedIn", href: contactInfo?.linkedin || "#" },
+    // { name: "Behance", href: contactInfo?.behance || "#" },
   ];
 
   return (

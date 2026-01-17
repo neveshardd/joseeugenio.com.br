@@ -19,16 +19,28 @@ export default function HeroContainer() {
     );
   }
 
-  if (!content) return null;
+  // Restore fallback for better DX and if API fails
+  const defaultData = {
+    title: "Arquitetura<br />do Silêncio",
+    subtitle: "Moldando o vazio. Esculpindo a luz.",
+    ctaText: "Ver Portfólio Completo",
+    ctaLink: "/projetos",
+    imageSrc: "/hero.jpg",
+    imageAlt: "Arquitetura Minimalista"
+  };
+
+  const data = { ...defaultData, ...content };
+
+  console.log("Hero Dynamic Content:", { content, finalData: data });
 
   return (
     <HeroSection
-      title={content.title}
-      subtitle={content.subtitle}
-      ctaText={content.ctaText}
-      ctaLink={content.ctaLink}
-      imageSrc={content.imageSrc}
-      imageAlt={content.imageAlt}
+      title={data.title}
+      subtitle={data.subtitle}
+      ctaText={data.ctaText}
+      ctaLink={data.ctaLink}
+      imageSrc={data.imageSrc}
+      imageAlt={data.imageAlt}
     />
   );
 }

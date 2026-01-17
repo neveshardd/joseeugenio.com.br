@@ -18,7 +18,7 @@ export default function ProjectsPreviewContainer() {
     queryFn: async () => {
       try {
         const data = await fetchFromAPI("/projects");
-        return data?.slice(0, 3) || [];
+        return data?.slice(0, 1) || [];
       } catch (err) {
         console.error("Error fetching projects for home:", err);
         return [];

@@ -27,8 +27,9 @@ export default async function ContactSection() {
           </a>
           {content.whatsapp && (
             <a 
-              href={`https://wa.me/${content.whatsapp}`} 
+              href={`https://wa.me/+5561999986567`} 
               className="btn-outline w-full max-w-[400px] inline-flex items-center justify-center px-10 py-4 text-sm font-medium uppercase tracking-wider text-foreground bg-transparent transition-all duration-300 border border-foreground hover:bg-foreground hover:text-white hover:-translate-y-0.5 hover:shadow-lg cursor-pointer"
+              target="_blank"
             >
               WhatsApp
             </a>
@@ -36,27 +37,27 @@ export default async function ContactSection() {
         </div>
 
         <div className="mt-16 flex gap-8 justify-center">
-          {content.linkedin && (
+          {/* {content.linkedin && (
             <a href={content.linkedin} className="link-elegant inline-flex items-center gap-2 no-underline text-foreground relative font-semibold uppercase text-xs tracking-[0.15em] pb-[2px] transition-opacity duration-300 hover:opacity-80 group">
               LinkedIn
               <span className="link-icon text-[1.1em] transition-transform duration-500 ease-[cubic-bezier(0.165,0.84,0.44,1)] inline-block group-hover:translate-x-1.5">⟶</span>
               <span className="absolute bottom-0 left-0 w-full h-px bg-foreground scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.165,0.84,0.44,1)] group-hover:scale-x-100 group-hover:origin-left"/>
             </a>
-          )}
+          )} */}
           {content.instagram && (
-            <a href={content.instagram} className="link-elegant inline-flex items-center gap-2 no-underline text-foreground relative font-semibold uppercase text-xs tracking-[0.15em] pb-[2px] transition-opacity duration-300 hover:opacity-80 group">
+            <a href="https://instagram.com/soujoseeugenio" target="_blank" className="link-elegant inline-flex items-center gap-2 no-underline text-foreground relative font-semibold uppercase text-xs tracking-[0.15em] pb-[2px] transition-opacity duration-300 hover:opacity-80 group">
               Instagram
               <span className="link-icon text-[1.1em] transition-transform duration-500 ease-[cubic-bezier(0.165,0.84,0.44,1)] inline-block group-hover:translate-x-1.5">⟶</span>
               <span className="absolute bottom-0 left-0 w-full h-px bg-foreground scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.165,0.84,0.44,1)] group-hover:scale-x-100 group-hover:origin-left"/>
             </a>
           )}
-          {content.behance && (
+          {/* {content.behance && (
             <a href={content.behance} className="link-elegant inline-flex items-center gap-2 no-underline text-foreground relative font-semibold uppercase text-xs tracking-[0.15em] pb-[2px] transition-opacity duration-300 hover:opacity-80 group">
               Behance
               <span className="link-icon text-[1.1em] transition-transform duration-500 ease-[cubic-bezier(0.165,0.84,0.44,1)] inline-block group-hover:translate-x-1.5">⟶</span>
               <span className="absolute bottom-0 left-0 w-full h-px bg-foreground scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.165,0.84,0.44,1)] group-hover:scale-x-100 group-hover:origin-left"/>
             </a>
-          )}
+          )} */}
         </div>
       </div>
     </section>
