@@ -84,7 +84,7 @@ export function ProjectCard({
           )}
         </Link>
         {links && links.length > 0 && (
-          <div className="absolute top-2 right-2 flex flex-wrap gap-2">
+          <div className="absolute top-2 right-2 left-2 flex flex-wrap justify-end gap-2">
             {links.map((link, idx) => (
               <Link
                 href={link.href}
@@ -92,6 +92,7 @@ export function ProjectCard({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
+                className="inline-flex"
               >
                 <Badge
                   className="flex items-center gap-1.5 text-xs bg-black text-white hover:bg-black/90"

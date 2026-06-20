@@ -33,10 +33,10 @@ function LogoImage({ src, alt }: { src: string; alt: string }) {
 export default function WorkSection() {
   return (
     <Accordion type="single" collapsible className="w-full grid gap-6">
-      {DATA.work.map((work) => (
+      {DATA.work.map((work, idx) => (
         <AccordionItem
-          key={work.company}
-          value={work.company}
+          key={`${work.company}-${idx}`}
+          value={`${work.company}-${idx}`}
           className="w-full border-b-0 grid gap-2"
         >
           <AccordionTrigger className="hover:no-underline p-0 cursor-pointer transition-colors rounded-none group [&>svg]:hidden">

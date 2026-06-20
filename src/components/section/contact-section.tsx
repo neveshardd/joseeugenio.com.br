@@ -21,20 +21,26 @@ export default function ContactSection() {
       </div>
       <div className="relative flex flex-col items-center gap-4 text-center">
         <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-          Get in Touch
+          Contato
         </h2>
         <p className="mx-auto max-w-lg text-muted-foreground text-balance">
-          Want to chat? Just shoot me a dm{" "}
+          Quer trocar uma ideia? Me envie um e-mail em{" "}
           <Link
-            href={DATA.contact.social.X.url}
+            href={`mailto:${DATA.contact.email}`}
+            className="text-blue-500 hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
+          >
+            {DATA.contact.email}
+          </Link>{" "}
+          ou me mande uma mensagem direta no{" "}
+          <Link
+            href={DATA.contact.social.Instagram.url}
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
           >
-            with a direct question on twitter
-          </Link>{" "}
-          and I&apos;ll respond whenever I can. I will ignore all
-          soliciting.
+            Instagram
+          </Link>
+          . Responderei o quanto antes!
         </p>
       </div>
     </div>

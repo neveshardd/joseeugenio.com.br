@@ -1,47 +1,142 @@
-<div align="center">
-<img alt="Portfolio" src="https://github.com/dillionverma/portfolio/assets/16860528/57ffca81-3f0a-4425-b31d-094f61725455" width="90%">
-</div>
+# portfolio-dev-and-arq
 
-# Portfolio [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdillionverma%2Fportfolio)
+> **joseeugenio.com.br** — Portfólio profissional de José Eugênio, Software Engineer & Arquiteto.
 
-Built with next.js, [shadcn/ui](https://ui.shadcn.com/), and [magic ui](https://magicui.design/), deployed on Vercel.
+Site pessoal desenvolvido com **Next.js 16**, **Tailwind CSS v4** e **Content Collections**, com seções sobre experiência profissional, projetos, blog técnico e formas de contato.
 
-# Features
+---
 
-- Setup only takes a few minutes by editing the [single config file](./src/data/resume.tsx)
-- Built using Next.js 14, React, Typescript, Shadcn/UI, TailwindCSS, Framer Motion, Magic UI
-- Includes a blog
-- Responsive for different devices
-- Optimized for Next.js and Vercel
+## Stack
 
-# Getting Started Locally
+| Categoria | Tecnologias |
+|---|---|
+| **Framework** | Next.js 16 (App Router, Turbopack) |
+| **Linguagem** | TypeScript 5.9 |
+| **Estilos** | Tailwind CSS v4, PostCSS, `tailwind-merge`, `tw-animate-css` |
+| **Componentes** | Radix UI (Accordion, Avatar, Separator, Slot, Tooltip), Lucide Icons |
+| **Animação** | Motion (Framer Motion), MagicUI (BlurFade, Dock, FlickeringGrid) |
+| **Conteúdo** | Content Collections, MDX, rehype-pretty-code, Shiki |
+| **Tema** | `next-themes` (dark/light mode) |
+| **Ícones SVG** | Componentes customizados React para linguagens, ferramentas e DBs |
 
-1. Clone this repository to your local machine:
+---
 
-   ```bash
-   git clone https://github.com/dillionverma/portfolio
-   ```
+## Estrutura
 
-2. Move to the cloned directory
+```
+src/
+├── app/                    # Next.js App Router
+│   ├── blog/               # Páginas do blog (slug dinâmico)
+│   ├── globals.css         # Estilos globais Tailwind
+│   ├── layout.tsx          # Layout raiz (fontes, tema, nav)
+│   ├── page.tsx            # Home page (seções)
+│   ├── not-found.tsx       # Página 404 customizada
+│   └── opengraph-image.tsx # OG image dinâmica (Edge Runtime)
+├── components/
+│   ├── magicui/            # Animações e efeitos (BlurFade, Dock, Grid)
+│   ├── mdx/                # Componentes MDX (CodeBlock, Media)
+│   ├── section/            # Seções da home (Work, Projects, Contact)
+│   ├── ui/                 # Componentes base (Badge, Avatar, etc.)
+│   │   └── svgs/           # Ícones SVG de tecnologias (React, Go, Docker, etc.)
+│   ├── icons.tsx           # Ícones custom (GitHub, Email, Globe)
+│   ├── mode-toggle.tsx     # Alternador dark/light
+│   ├── navbar.tsx          # Dock inferior com navegação
+│   ├── project-card.tsx    # Card de projeto reutilizável
+│   ├── theme-provider.tsx  # Provider de tema
+│   └── timeline.tsx        # Timeline de experiência
+├── data/
+│   └── resume.tsx          # Dados centralizados (perfil, skills, work, projetos)
+├── lib/
+│   ├── utils.ts            # Utilitários (cn, formatDate)
+│   ├── pagination.ts       # Lógica de paginação do blog
+│   └── remark-code-meta.ts # Plugin remark para meta de código
+└── mdx-components.tsx      # Mapeamento de componentes MDX
+```
 
-   ```bash
-   cd portfolio
-   ```
+---
 
-3. Install dependencies:
+## Funcionalidades
 
-   ```bash
-   pnpm install
-   ```
+### Perfil & Skills
+- Foto, nome, bio e resumo profissional
+- Grid de skills com ícones SVG oficiais de cada tecnologia
+- Animações de entrada com `BlurFade`
 
-4. Start the local Server:
+### Experiência Profissional
+- Timeline com cargos, empresas, período e descrição
+- Logos das empresas
+- Animações progressivas
 
-   ```bash
-   pnpm dev
-   ```
+### Projetos
+- Cards com imagem, descrição, tecnologias usadas e links
+- Status ativo/inativo
+- Destaque para o SleepComet (SaaS de IA)
 
-5. Open the [Config file](./src/data/resume.tsx) and make changes
+### Blog Técnico
+- Artigos em MDX com syntax highlighting (Shiki + rehype-pretty-code)
+- Paginação
+- OpenGraph images geradas dinamicamente (Edge Runtime)
+- 7 artigos publicados sobre desenvolvimento
 
-# License
+### Contato
+- Links para GitHub, Instagram e e-mail
+- Dock inferior com acesso rápido
 
-Licensed under the [MIT license](https://github.com/dillionverma/portfolio/blob/main/LICENSE.md).
+### Tema
+- Suporte a tema claro e escuro
+- Persistência via `next-themes`
+
+---
+
+## Como Rodar
+
+```bash
+# Instalar dependências
+npm install
+
+# Desenvolvimento
+npm run dev        # http://localhost:4050
+
+# Build de produção
+npm run build
+
+# Preview da build
+npm start
+
+# Lint
+npm run lint
+```
+
+---
+
+## Scripts
+
+| Comando | Descrição |
+|---|---|
+| `npm run dev` | Inicia servidor dev na porta 4050 |
+| `npm run build` | Build de produção com Next.js |
+| `npm start` | Inicia servidor da build |
+| `npm run lint` | ESLint em todo o projeto |
+| `npm run lint:fix` | ESLint com auto-fix |
+
+---
+
+## Deploy
+
+O deploy é feito na **Vercel** (otimizado para Next.js).
+
+```bash
+npm i -g vercel
+vercel --prod
+```
+
+Configuração no `vercel.json`:
+- Framework: `nextjs`
+- Build: `next build`
+- Output: `.next`
+
+---
+
+## Licença
+
+MIT
